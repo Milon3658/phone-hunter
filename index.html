@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="loadPhones('apple')">Apple</a>
+                            <a class="nav-link" aria-current="page" href="#" onclick="loadPhones('apple')">Apple</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="loadPhones('samsung')">Samsung</a>
@@ -33,21 +33,29 @@
                     </ul>
                     <form class="d-flex" role="search">
                         <input id="search-field" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button id="search-btn" class="btn btn-outline-success" type="submit">Search</button>
+                        <button id="search-btn" class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
+
     <main class="container mt-5">
         <div> 
             <p id="no-found-message" class="text-danger text-center mt-5 d-none">No result found, please search again</p>
         </div>
-        <section class="mt-5">
+        <div id="show-spinner" class="d-flex justify-content-center d-none">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        <section class="mt-5 mb-5">
             <div>
-                <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">
-                    
-                  </div>
+                <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">   
+                </div>
+            </div>
+            <div id="see-all" class=" d-flex justify-content-center align-items-center mb-5 mt-5 d-none">
+                <button type="button" class="btn btn-primary">See all</button>
             </div>
         </section>
     </main>
@@ -57,5 +65,4 @@
         crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
-
 </html>
