@@ -11,7 +11,7 @@
 
 <body>
     <header class="container">
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Phone Hunter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,30 +28,60 @@
                             <a class="nav-link" href="#" onclick="loadPhones('samsung')">Samsung</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="loadPhones('oppo')">Oppo</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" onclick="loadPhones('watch')">Watches</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <input id="search-field" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input id="search-field" class="form-control me-2" type="search" placeholder="Search"
+                            aria-label="Search">
                         <button id="search-btn" class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
-
     <main class="container mt-5">
-        <div> 
-            <p id="no-found-message" class="text-danger text-center mt-5 d-none">No result found, please search again</p>
+        <div>
+            <p id="no-found-message" class="text-danger text-center mt-5 d-none">No result found, please search again
+            </p>
         </div>
         <div id="show-spinner" class="d-flex justify-content-center d-none">
             <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden">Loading...</span>
             </div>
-          </div>
+        </div>
+        <!-- Modal -->
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Phone</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal close  -->
         <section class="mt-5 mb-5">
             <div>
-                <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">   
+                <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">
                 </div>
             </div>
             <div id="see-all" class=" d-flex justify-content-center align-items-center mb-5 mt-5 d-none">
@@ -59,7 +89,6 @@
             </div>
         </section>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>

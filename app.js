@@ -1,9 +1,14 @@
+// load all phones from api 
+
 const loadPhones = async (search = 'iphone') => {
     const url = 'https://openapi.programming-hero.com/api/phones?search='+search;
     const res = await fetch(url)
     const data = await res.json();
     displayPhones(data.data);
 }
+
+// display all phones from api to UI 
+
 const displayPhones = phones => {
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML=``;
@@ -29,7 +34,7 @@ const displayPhones = phones => {
             <div class="card-body">
               <h5 class="card-title">${phone.phone_name}</h5>
               <p class="card-text">${phone.brand}</p>
-              <button id="load-phone-details" onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-primary">Details</button>
+              <button id="load-phone-details" onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Specifications</button>
             </div>
         </div>
         `;
@@ -58,4 +63,33 @@ const toggolSpinner = isLoading=>{
     }else{
         loadingStatus.classList.add('d-none');
     }
+}
+
+// load phone details 
+
+const loadPhoneDetails =(id) => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayModal(data.data));
+}
+const displayModal = details =>{
+    const modalTitle = document.getElementById('staticBackdropLabel');
+    modalTitle.innerText = details.name;
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML=`
+    <p>Brand: ${details.brand}</p>
+    <p>storage: ${details.mainFeatures ? details.mainFeatures.storage : 'Not available'}</p>
+    <p>Display size: ${details.mainFeatures ? details.mainFeatures.displaySize : 'Not available'}</p>
+    <p>ChipSet: ${details.mainFeatures ? details.mainFeatures.chipSet : 'Not available'}</p>
+    <p>Memory: ${details.mainFeatures ? details.mainFeatures.memory : 'Not available'}</p>
+    <p>Release date: ${details.releaseDate ? details.releaseDate : 'Not available'}</p>
+    <p>Sensors: ${details.mainFeatures.sensors ? details.mainFeatures.sensors : 'Not available'}</p>
+    <p>WLAN: ${details.others ? details.others.WLAN : 'Not available'}</p>
+    <p>Bluetooth: ${details.others ? details.others.Bluetooth : 'Not available'}</p>
+    <p>GPS: ${details.others ? details.others.GPS : 'Not available'}</p>
+    <p>NFC: ${details.others ? details.others.NFC : 'Not available'}</p>
+    <p>Radio: ${details.others ? details.others.Radio : 'Not available'}</p>
+    <p>USB: ${details.others ? details.others.USB : 'Not available'}</p>
+    `;
 }
